@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky's Boulangerie | Artisanal Weekend Bakery in Victorville, CA</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F6F0',
+                        'cream-card': '#FFFDF9',
+                        'cream-dark': '#EFEADF',
+                        black: '#111111',
+                        onyx: '#1A1A1A',
+                        navy: '#162A45',
+                        gold: '#B08D55',
+                        'gold-light': '#D4B37B',
+                        'gold-dark': '#8E6E37',
+                        espresso: '#221F1D',
+                        'espresso-soft': '#615A54',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        script: ['"Great Vibes"', '"Dancing Script"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fallback Embedded Styles for Guaranteed Rendering -->
+    <style>
+        :root {
+            --bg-cream: #F9F6F0;
+            --text-espresso: #221F1D;
+            --accent-gold: #B08D55;
+            --accent-navy: #162A45;
+            --accent-black: #111111;
+        }
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-espresso);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .font-script {
+            font-family: 'Great Vibes', 'Dancing Script', cursive;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F6F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B08D55;
+            border-radius: 4px;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B08D55 0%, #D4B37B 50%, #8E6E37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-nav {
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-cream text-espresso antialiased min-h-screen flex flex-col justify-between selection:bg-gold selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="sticky top-0 z-40 glass-nav text-cream border-b border-gold/40 shadow-xl">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
+            <!-- Brand Logo Lockup -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-cream px-3 py-1.5 rounded-xl border border-gold/40 shadow-sm transition-transform group-hover:scale-105 flex flex-col items-center justify-center leading-none">
+                    <span class="font-script text-navy text-2xl font-bold -mb-1">Sky's</span>
+                    <span class="font-serif text-gold text-xs tracking-wide font-bold uppercase">Boulangerie</span>
+                    <span class="text-[7px] text-gold-dark tracking-widest uppercase font-semibold mt-0.5">EST. 2024</span>
+                </div>
+                <div class="hidden sm:block">
+                    <span class="font-serif text-lg font-bold text-cream block leading-tight">
+                        Sky's <span class="text-gold">Boulangerie</span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-widest text-cream/70 font-medium block">
+                        Victorville, CA
+                    </span>
+                </div>
+            </a>
+
+            <!-- Cart/Bag Trigger Button -->
+            <button onclick="toggleBagDrawer()" class="relative bg-gold hover:bg-gold-light text-black font-extrabold px-4 py-2.5 rounded-full flex items-center gap-2.5 transition-all shadow-md active:scale-95">
+                <i class="fa-solid fa-bag-shopping text-base"></i>
+                <span class="hidden sm:inline text-xs uppercase tracking-wider">Your Bag</span>
+                <span id="nav-bag-count" class="bg-black text-gold text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border border-gold/40">
+                    0
+                </span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION WITH BRAND LOGO CARD -->
+    <header class="relative bg-black text-cream py-14 px-4 sm:px-6 border-b-4 border-gold overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#B08D55_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+            
+            <!-- Logo Card Display -->
+            <div class="inline-block bg-cream p-6 sm:p-8 rounded-3xl border-2 border-gold shadow-2xl transition-transform hover:scale-105 my-2">
+                <div class="font-script text-navy text-5xl sm:text-7xl font-bold leading-none mb-1">
+                    Sky's
+                </div>
+                <div class="font-serif text-gold text-2xl sm:text-4xl font-semibold tracking-wide uppercase leading-tight mb-2">
+                    Boulangerie
+                </div>
+                <div class="text-xs sm:text-sm text-gold font-medium tracking-[0.3em] uppercase border-t border-gold/30 pt-2 mx-auto max-w-[200px]">
+                    EST. 2024
+                </div>
+            </div>
+
+            <div>
+                <span class="inline-block bg-gold/20 border border-gold/50 text-gold-light text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-3 shadow">
+                    ✨ Fresh Weekend Drops • Pre-Order Only
+                </span>
+                <h1 class="font-serif text-3xl sm:text-5xl font-extrabold text-cream leading-tight">
+                    Warm Cinnamon Rolls & Gourmet Cookies
+                </h1>
+                <p class="text-xs sm:text-base text-cream/80 max-w-xl mx-auto mt-3 font-medium leading-relaxed">
+                    Handcrafted in small batches with signature cream cheese frosting & brown butter chocolate chips. Victorville porch pickup.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-bold uppercase tracking-wider pt-2">
+                <a href="#menu" class="bg-gold hover:bg-gold-light text-black px-6 py-3 rounded-full transition-all flex items-center gap-2 shadow-lg hover:shadow-gold/20 active:scale-95">
+                    <span>View Menu & Order</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#pickup-info" class="bg-onyx hover:bg-black text-cream border border-gold/40 px-6 py-3 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-clock text-gold"></i>
+                    <span>Pickup Hours</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN MENU CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16 flex-grow">
+
+        <!-- MENU SECTION -->
+        <section id="menu" class="scroll-mt-24 space-y-10">
+            <div class="text-center max-w-xl mx-auto">
+                <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-black mb-2">Weekend Menu</h2>
+                <div class="w-16 h-1 bg-gold mx-auto mb-3 rounded-full"></div>
+                <p class="text-xs sm:text-sm text-espresso-soft">
+                    Select your bakes to build your custom order. Orders are baked fresh on weekend mornings for porch pickup.
+                </p>
+            </div>
+
+            <!-- CATEGORY 1: CINNAMON ROLLS -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b-2 border-black/15 pb-3">
+                    <div class="w-8 h-8 rounded-full bg-black text-gold flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-stroopwafel"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl font-bold text-black">Jumbo Cinnamon Rolls</h3>
+                        <p class="text-xs text-espresso-soft">Baked fresh every weekend with buttery brioche dough & rich cinnamon brown sugar.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Single Roll -->
+                    <div class="bg-cream-card border-2 border-black/15 hover:border-black rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">Single Jumbo Roll</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$5.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-4 leading-relaxed">
+                                One individual jumbo warm cinnamon roll served with your choice of topping.
+                            </p>
+                            <div class="text-xs bg-cream p-3 rounded-xl border border-black/10 mb-5">
+                                <label for="glaze-single" class="font-bold text-black block mb-1.5 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-spoon text-gold"></i> Frosting Choice:
+                                </label>
+                                <select id="glaze-single" class="w-full text-xs p-2 rounded-lg border border-black/20 bg-white font-medium text-black focus:outline-none focus:border-gold">
+                                    <option value="Signature Cream Cheese Frosting">Signature Cream Cheese Frosting</option>
+                                    <option value="Classic Vanilla Bean Glaze">Classic Vanilla Bean Glaze</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="addToBag('roll-single')" class="w-full bg-black hover:bg-onyx text-cream font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-gold/30 active:scale-95 shadow">
+                            <i class="fa-solid fa-plus text-gold"></i>
+                            <span>Add Single Roll ($5.00)</span>
+                        </button>
+                    </div>
+
+                    <!-- 4-Pack Signature Box -->
+                    <div class="bg-cream-card border-2 border-black rounded-2xl p-6 shadow-md hover:shadow-xl transition-all relative flex flex-col justify-between ring-2 ring-gold/40">
+                        <span class="absolute -top-3.5 right-4 bg-black text-gold border border-gold text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow">
+                            ⭐ Best Value ($4/roll)
+                        </span>
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">4-Pack Signature Box</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$16.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-4 leading-relaxed">
+                                Four giant cinnamon rolls packaged in a custom bakery box with grease-resistant liner ($4/roll).
+                            </p>
+                            <div class="text-xs bg-cream p-3 rounded-xl border border-black/10 mb-5">
+                                <label for="glaze-4pack" class="font-bold text-black block mb-1.5 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-spoon text-gold"></i> Frosting Choice:
+                                </label>
+                                <select id="glaze-4pack" class="w-full text-xs p-2 rounded-lg border border-black/20 bg-white font-medium text-black focus:outline-none focus:border-gold">
+                                    <option value="Signature Cream Cheese Frosting">Signature Cream Cheese Frosting</option>
+                                    <option value="Classic Vanilla Bean Glaze">Classic Vanilla Bean Glaze</option>
+                                    <option value="Half Cream Cheese / Half Vanilla Glaze">Half Cream Cheese / Half Vanilla</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="addToBag('roll-4pack')" class="w-full bg-gold hover:bg-gold-light text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-md active:scale-95">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add 4-Pack Box ($16.00)</span>
+                        </button>
+                    </div>
+
+                    <!-- 6-Pack Family Box -->
+                    <div class="bg-cream-card border-2 border-black/15 hover:border-black rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">6-Pack Family Box</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$24.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-4 leading-relaxed">
+                                Six jumbo rolls ideal for family weekend breakfasts, brunches, or sharing ($4/roll).
+                            </p>
+                            <div class="text-xs bg-cream p-3 rounded-xl border border-black/10 mb-5">
+                                <label for="glaze-6pack" class="font-bold text-black block mb-1.5 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-spoon text-gold"></i> Frosting Choice:
+                                </label>
+                                <select id="glaze-6pack" class="w-full text-xs p-2 rounded-lg border border-black/20 bg-white font-medium text-black focus:outline-none focus:border-gold">
+                                    <option value="Signature Cream Cheese Frosting">Signature Cream Cheese Frosting</option>
+                                    <option value="Classic Vanilla Bean Glaze">Classic Vanilla Bean Glaze</option>
+                                    <option value="Half Cream Cheese / Half Vanilla Glaze">Half Cream Cheese / Half Vanilla</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="addToBag('roll-6pack')" class="w-full bg-black hover:bg-onyx text-cream font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-gold/30 active:scale-95 shadow">
+                            <i class="fa-solid fa-plus text-gold"></i>
+                            <span>Add 6-Pack Box ($24.00)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATEGORY 2: COOKIES -->
+            <div class="space-y-6 pt-6">
+                <div class="flex items-center gap-3 border-b-2 border-black/15 pb-3">
+                    <div class="w-8 h-8 rounded-full bg-black text-gold flex items-center justify-center font-bold text-sm">
+                        <i class="fa-solid fa-cookie"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl font-bold text-black">Gourmet Cookies</h3>
+                        <p class="text-xs text-espresso-soft">Thick, soft-centered cookies made with nutty brown butter & premium chocolate chunks.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 2-Pack -->
+                    <div class="bg-cream-card border-2 border-black/15 hover:border-black rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">2-Pack Treat Bag</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$5.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-6 leading-relaxed">
+                                Two large Brown Butter Chocolate Chip cookies packaged in a clear bakery bag.
+                            </p>
+                        </div>
+                        <button onclick="addToBag('cookie-2pack')" class="w-full bg-black hover:bg-onyx text-cream font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-gold/30 active:scale-95 shadow">
+                            <i class="fa-solid fa-plus text-gold"></i>
+                            <span>Add 2-Pack ($5.00)</span>
+                        </button>
+                    </div>
+
+                    <!-- Half-Dozen Box -->
+                    <div class="bg-cream-card border-2 border-black/15 hover:border-black rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">Half-Dozen Box (6)</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$14.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-6 leading-relaxed">
+                                Six thick Brown Butter Chocolate Chip cookies packaged in a bakery window box.
+                            </p>
+                        </div>
+                        <button onclick="addToBag('cookie-halfdozen')" class="w-full bg-black hover:bg-onyx text-cream font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-gold/30 active:scale-95 shadow">
+                            <i class="fa-solid fa-plus text-gold"></i>
+                            <span>Add Half-Dozen ($14.00)</span>
+                        </button>
+                    </div>
+
+                    <!-- Dozen Box -->
+                    <div class="bg-cream-card border-2 border-black hover:border-black rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-xl font-bold text-black">Full Dozen Box (12)</h4>
+                                <span class="bg-black text-gold font-bold px-3 py-1 rounded-full text-sm border border-gold/30">$25.00</span>
+                            </div>
+                            <p class="text-xs text-espresso-soft mb-6 leading-relaxed">
+                                Twelve jumbo Brown Butter Chocolate Chip cookies. Great for weekend events & families!
+                            </p>
+                        </div>
+                        <button onclick="addToBag('cookie-dozen')" class="w-full bg-gold hover:bg-gold-light text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-md active:scale-95">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add Dozen Box ($25.00)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS & PICKUP SCHEDULE -->
+        <section id="pickup-info" class="scroll-mt-24 bg-black text-cream rounded-3xl p-8 sm:p-10 border-2 border-gold shadow-2xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto space-y-8 relative z-10">
+                <div class="text-center space-y-2">
+                    <span class="text-gold text-xs font-bold uppercase tracking-widest">Simple & Fast</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-cream">Ordering & Pickup Process</h2>
+                    <div class="w-16 h-1 bg-gold mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                    <div class="bg-onyx p-5 rounded-2xl border border-gold/20 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gold text-black flex items-center justify-center font-bold text-lg mb-3 shadow">1</div>
+                        <h4 class="font-serif font-bold text-lg text-cream mb-1">Build Your Bag</h4>
+                        <p class="text-xs text-cream/70">Select your rolls, cookies, and frosting choices on this site.</p>
+                    </div>
+
+                    <div class="bg-onyx p-5 rounded-2xl border border-gold/20 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gold text-black flex items-center justify-center font-bold text-lg mb-3 shadow">2</div>
+                        <h4 class="font-serif font-bold text-lg text-cream mb-1">DM / Text Order</h4>
+                        <p class="text-xs text-cream/70">Copy your formatted receipt and send it via IG DM or Text for payment.</p>
+                    </div>
+
+                    <div class="bg-onyx p-5 rounded-2xl border border-gold/20 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gold text-black flex items-center justify-center font-bold text-lg mb-3 shadow">3</div>
+                        <h4 class="font-serif font-bold text-lg text-cream mb-1">Porch Pickup</h4>
+                        <p class="text-xs text-cream/70">Pick up your fresh box in Victorville during your selected window.</p>
+                    </div>
+                </div>
+
+                <div class="bg-onyx/90 border border-gold/30 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-wallet text-gold text-2xl"></i>
+                        <div>
+                            <div class="font-bold text-sm text-cream">Accepted Payments</div>
+                            <div class="text-xs text-cream/70">Zelle, PayPal, Venmo, or Cash App</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-black border border-gold/40 text-gold text-[10px] font-bold px-3 py-1 rounded-full">ZELLE</span>
+                        <span class="bg-black border border-gold/40 text-gold text-[10px] font-bold px-3 py-1 rounded-full">PAYPAL</span>
+                        <span class="bg-black border border-gold/40 text-gold text-[10px] font-bold px-3 py-1 rounded-full">VENMO</span>
+                        <span class="bg-black border border-gold/40 text-gold text-[10px] font-bold px-3 py-1 rounded-full">CASH APP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ ACCORDION -->
+        <section class="max-w-3xl mx-auto space-y-6">
+            <div class="text-center">
+                <h2 class="font-serif text-3xl font-extrabold text-black">Frequently Asked Questions</h2>
+                <div class="w-12 h-1 bg-gold mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <details class="group bg-cream-card border border-black/15 rounded-2xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+                    <summary class="flex items-center justify-between font-serif font-bold text-black text-base">
+                        <span>Which payment methods are accepted?</span>
+                        <span class="transition group-open:rotate-180 text-gold"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs text-espresso-soft leading-relaxed border-t border-black/10 pt-3">
+                        We accept <strong>Zelle</strong>, <strong>PayPal</strong>, <strong>Venmo</strong>, and <strong>Cash App</strong>. Payment is required upon order confirmation to lock in your baking slot.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-card border border-black/15 rounded-2xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+                    <summary class="flex items-center justify-between font-serif font-bold text-black text-base">
+                        <span>Where and when is porch pickup?</span>
+                        <span class="transition group-open:rotate-180 text-gold"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs text-espresso-soft leading-relaxed border-t border-black/10 pt-3">
+                        Porch pickup takes place in Victorville, CA. Our standard weekend pickup windows are <strong>Saturdays 10:00 AM – 1:00 PM</strong> and <strong>Sundays 12:00 PM – 3:00 PM</strong>. Address details are provided upon order payment.
+                    </p>
+                </details>
+
+                <details class="group bg-cream-card border border-black/15 rounded-2xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+                    <summary class="flex items-center justify-between font-serif font-bold text-black text-base">
+                        <span>What is the best way to reheat cinnamon rolls?</span>
+                        <span class="transition group-open:rotate-180 text-gold"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs text-espresso-soft leading-relaxed border-t border-black/10 pt-3">
+                        Warming your roll in the microwave for <strong>12 to 15 seconds</strong> softens the brioche dough and lets the cream cheese frosting melt right into the center!
+                    </p>
+                </details>
+
+                <details class="group bg-cream-card border border-black/15 rounded-2xl p-4 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+                    <summary class="flex items-center justify-between font-serif font-bold text-black text-base">
+                        <span>Is Sky's Boulangerie a licensed cottage food operation?</span>
+                        <span class="transition group-open:rotate-180 text-gold"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs text-espresso-soft leading-relaxed border-t border-black/10 pt-3">
+                        Yes! Sky's Boulangerie operates under California Cottage Food Law guidelines with a certified Food Handler Certificate in San Bernardino County.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER WITH EMBEDDED LOGO -->
+    <footer class="bg-black text-cream border-t-2 border-gold py-12 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <div class="bg-cream px-4 py-2 rounded-xl border border-gold/40 flex flex-col items-center leading-none">
+                    <span class="font-script text-navy text-3xl font-bold -mb-1">Sky's</span>
+                    <span class="font-serif text-gold text-sm tracking-wide font-bold uppercase">Boulangerie</span>
+                    <span class="text-[8px] text-gold-dark tracking-widest uppercase font-semibold mt-0.5">EST. 2024</span>
+                </div>
+                <p class="text-xs text-cream/70 mt-1">Artisanal weekend cinnamon rolls & cookies in Victorville, CA.</p>
+            </div>
+            
+            <div class="flex items-center gap-4 text-gold">
+                <a href="#" class="w-10 h-10 rounded-full bg-onyx border border-gold/40 flex items-center justify-center hover:bg-gold hover:text-black transition-colors shadow">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-onyx border border-gold/40 flex items-center justify-center hover:bg-gold hover:text-black transition-colors shadow">
+                    <i class="fa-brands fa-tiktok text-lg"></i>
+                </a>
+            </div>
+
+            <div class="text-[11px] text-cream/50 leading-relaxed">
+                Made in a Home Kitchen • San Bernardino County<br>
+                Permit # Class A Cottage Food Operation<br>
+                © 2024–2026 Sky's Boulangerie. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OVER BAG & CHECKOUT DRAWER -->
+    <div id="bag-overlay" onclick="toggleBagDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    
+    <aside id="bag-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-cream z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl border-l-2 border-gold">
+        <!-- Drawer Header -->
+        <div class="bg-black text-cream p-4 flex items-center justify-between border-b border-gold/30">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-gold text-lg"></i>
+                <h3 class="font-serif text-xl font-bold text-cream">Your Order Bag</h3>
+            </div>
+            <button onclick="toggleBagDrawer()" class="text-cream/70 hover:text-gold text-xl w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Body -->
+        <div class="p-5 flex-grow overflow-y-auto space-y-6">
+            <div id="bag-items-container" class="space-y-3"></div>
+
+            <div id="bag-empty-state" class="text-center py-10 space-y-3">
+                <div class="w-16 h-16 rounded-full bg-cream-dark mx-auto flex items-center justify-center text-espresso-soft text-2xl">
+                    <i class="fa-solid fa-cookie-bite"></i>
+                </div>
+                <p class="font-serif font-bold text-black text-lg">Your bag is empty</p>
+                <p class="text-xs text-espresso-soft">Add cinnamon rolls or cookies to begin building your weekend order!</p>
+            </div>
+
+            <div id="bag-checkout-form" class="space-y-4 pt-4 border-t border-black/15 hidden">
+                <h4 class="font-serif font-bold text-lg text-black">Pickup & Contact Details</h4>
+
+                <div>
+                    <label class="block text-xs font-bold text-black mb-1">Your Name *</label>
+                    <input type="text" id="customer-name" placeholder="First & Last Name" class="w-full text-xs p-2.5 rounded-xl border border-black/20 bg-white font-medium focus:outline-none focus:border-gold">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-black mb-1">Preferred Pickup Window *</label>
+                    <select id="customer-pickup" class="w-full text-xs p-2.5 rounded-xl border border-black/20 bg-white font-medium focus:outline-none focus:border-gold">
+                        <option value="Saturday (10:00 AM – 1:00 PM)">Saturday (10:00 AM – 1:00 PM)</option>
+                        <option value="Sunday (12:00 PM – 3:00 PM)">Sunday (12:00 PM – 3:00 PM)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-black mb-1">Payment Method *</label>
+                    <select id="customer-payment" class="w-full text-xs p-2.5 rounded-xl border border-black/20 bg-white font-medium focus:outline-none focus:border-gold">
+                        <option value="Zelle">Zelle</option>
+                        <option value="PayPal">PayPal</option>
+                        <option value="Venmo">Venmo</option>
+                        <option value="Cash App">Cash App</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-black mb-1">Special Notes / Requests (Optional)</label>
+                    <textarea id="customer-notes" rows="2" placeholder="Any special instructions..." class="w-full text-xs p-2.5 rounded-xl border border-black/20 bg-white font-medium focus:outline-none focus:border-gold"></textarea>
+                </div>
+            </div>
+
+            <div id="receipt-output-container" class="hidden bg-black text-cream p-4 rounded-2xl border border-gold space-y-3">
+                <div class="flex items-center justify-between border-b border-gold/30 pb-2">
+                    <span class="text-xs font-bold text-gold uppercase tracking-wider">Formatted Receipt</span>
+                    <span class="text-[10px] text-cream/70">Ready to DM/Text</span>
+                </div>
+                <pre id="receipt-text" class="text-[11px] font-mono text-cream/90 whitespace-pre-wrap leading-relaxed max-h-48 overflow-y-auto bg-onyx p-3 rounded-lg border border-gold/20"></pre>
+                <button onclick="copyReceiptToClipboard()" class="w-full bg-gold hover:bg-gold-light text-black font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-copy"></i>
+                    <span id="copy-btn-text">Copy Order to Clipboard</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4 bg-black text-cream border-t border-gold/30 space-y-3">
+            <div class="flex justify-between items-center text-sm">
+                <span class="font-medium text-cream/80">Total Amount:</span>
+                <span id="bag-subtotal" class="font-serif font-bold text-xl text-gold">$0.00</span>
+            </div>
+            
+            <button id="generate-receipt-btn" onclick="generateOrderReceipt()" class="w-full bg-gold hover:bg-gold-light text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Generate Order Receipt</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 bg-black text-cream border-2 border-gold px-5 py-3 rounded-2xl shadow-2xl z-50 hidden flex items-center gap-3 animate-slide-up">
+        <i class="fa-solid fa-circle-check text-gold text-lg"></i>
+        <div>
+            <div id="toast-title" class="font-bold text-xs text-cream">Added to Bag!</div>
+            <div id="toast-msg" class="text-[11px] text-cream/70">Your order has been updated.</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        const productsDB = {
+            'roll-single': { id: 'roll-single', name: 'Single Jumbo Roll', price: 5.00, hasGlaze: true, glazeId: 'glaze-single' },
+            'roll-4pack': { id: 'roll-4pack', name: '4-Pack Signature Box', price: 16.00, hasGlaze: true, glazeId: 'glaze-4pack' },
+            'roll-6pack': { id: 'roll-6pack', name: '6-Pack Family Box', price: 24.00, hasGlaze: true, glazeId: 'glaze-6pack' },
+            'cookie-2pack': { id: 'cookie-2pack', name: '2-Pack Choc Chip Treat Bag', price: 5.00, hasGlaze: false },
+            'cookie-halfdozen': { id: 'cookie-halfdozen', name: 'Half-Dozen Choc Chip Box (6)', price: 14.00, hasGlaze: false },
+            'cookie-dozen': { id: 'cookie-dozen', name: 'Full Dozen Choc Chip Box (12)', price: 25.00, hasGlaze: false }
+        };
+
+        let bag = [];
+
+        function toggleBagDrawer() {
+            const drawer = document.getElementById('bag-drawer');
+            const overlay = document.getElementById('bag-overlay');
+            const isHidden = drawer.classList.contains('translate-x-full');
+
+            if (isHidden) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function addToBag(productId) {
+            const product = productsDB[productId];
+            if (!product) return;
+
+            let selectedGlaze = null;
+            if (product.hasGlaze) {
+                const glazeSelect = document.getElementById(product.glazeId);
+                if (glazeSelect) {
+                    selectedGlaze = glazeSelect.value;
+                }
+            }
+
+            const existingIndex = bag.findIndex(item => item.id === productId && item.glaze === selectedGlaze);
+
+            if (existingIndex > -1) {
+                bag[existingIndex].qty += 1;
+            } else {
+                bag.push({
+                    id: productId,
+                    name: product.name,
+                    price: product.price,
+                    glaze: selectedGlaze,
+                    qty: 1
+                });
+            }
+
+            renderBag();
+            showToast('Added to Bag!', `${product.name} has been added.`);
+        }
+
+        function updateQty(index, delta) {
+            if (bag[index]) {
+                bag[index].qty += delta;
+                if (bag[index].qty <= 0) {
+                    bag.splice(index, 1);
+                }
+            }
+            renderBag();
+        }
+
+        function removeItem(index) {
+            if (bag[index]) {
+                bag.splice(index, 1);
+            }
+            renderBag();
+        }
+
+        function renderBag() {
+            const container = document.getElementById('bag-items-container');
+            const emptyState = document.getElementById('bag-empty-state');
+            const checkoutForm = document.getElementById('bag-checkout-form');
+            const navCount = document.getElementById('nav-bag-count');
+            const subtotalEl = document.getElementById('bag-subtotal');
+            const generateBtn = document.getElementById('generate-receipt-btn');
+
+            container.innerHTML = '';
+            let totalCount = 0;
+            let totalPrice = 0;
+
+            if (bag.length === 0) {
+                emptyState.classList.remove('hidden');
+                checkoutForm.classList.add('hidden');
+                generateBtn.disabled = true;
+            } else {
+                emptyState.classList.add('hidden');
+                checkoutForm.classList.remove('hidden');
+                generateBtn.disabled = false;
+
+                bag.forEach((item, index) => {
+                    totalCount += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'bg-cream-card border border-black/15 p-3.5 rounded-xl flex items-center justify-between shadow-sm';
+                    itemEl.innerHTML = `
+                        <div class="space-y-0.5">
+                            <div class="font-serif font-bold text-xs text-black">${item.name}</div>
+                            ${item.glaze ? `<div class="text-[10px] text-gold-dark font-medium"><i class="fa-solid fa-spoon"></i> ${item.glaze}</div>` : ''}
+                            <div class="text-xs font-bold text-black">$${(item.price * item.qty).toFixed(2)}</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center border border-black/20 rounded-lg bg-white overflow-hidden text-xs">
+                                <button onclick="updateQty(${index}, -1)" class="px-2 py-1 hover:bg-cream-dark text-black font-bold">-</button>
+                                <span class="px-2 font-bold">${item.qty}</span>
+                                <button onclick="updateQty(${index}, 1)" class="px-2 py-1 hover:bg-cream-dark text-black font-bold">+</button>
+                            </div>
+                            <button onclick="removeItem(${index})" class="text-red-600 hover:text-red-800 text-xs p-1">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(itemEl);
+                });
+            }
+
+            navCount.textContent = totalCount;
+            subtotalEl.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function generateOrderReceipt() {
+            const name = document.getElementById('customer-name').value.trim();
+            const pickup = document.getElementById('customer-pickup').value;
+            const payment = document.getElementById('customer-payment').value;
+            const notes = document.getElementById('customer-notes').value.trim();
+
+            if (!name) {
+                showToast('Missing Name', 'Please enter your full name for the order.');
+                document.getElementById('customer-name').focus();
+                return;
+            }
+
+            if (bag.length === 0) return;
+
+            let total = 0;
+            let itemsSummary = '';
+
+            bag.forEach((item, i) => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                itemsSummary += `${i + 1}. ${item.name} (x${item.qty}) - $${itemTotal.toFixed(2)}\n`;
+                if (item.glaze) {
+                    itemsSummary += `   └ Frosting: ${item.glaze}\n`;
+                }
+            });
+
+            const receiptString = 
+`🥐 SKY'S BOULANGERIE WEEKEND ORDER 🥐
+-------------------------------------
+Customer: ${name}
+Pickup Window: ${pickup}
+Payment Method: ${payment}
+-------------------------------------
+ITEMS ORDERED:
+${itemsSummary}
+TOTAL AMOUNT: $${total.toFixed(2)}
+-------------------------------------
+${notes ? `Special Notes: ${notes}\n-------------------------------------\n` : ''}📍 Pickup Location: Victorville, CA
+👉 Direct Message this text to @SkysBoulangerie to confirm your order!`;
+
+            document.getElementById('receipt-text').textContent = receiptString;
+            document.getElementById('receipt-output-container').classList.remove('hidden');
+            document.getElementById('receipt-output-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyReceiptToClipboard() {
+            const text = document.getElementById('receipt-text').textContent;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const btnText = document.getElementById('copy-btn-text');
+            btnText.textContent = 'Copied to Clipboard! ✓';
+            showToast('Order Copied!', 'Paste into IG Direct Message or Text.');
+
+            setTimeout(() => {
+                btnText.textContent = 'Copy Order to Clipboard';
+            }, 3000);
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-msg').textContent = msg;
+
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
